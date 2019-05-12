@@ -10,9 +10,14 @@ namespace MicroNetCore
     {
         private readonly RequestDelegate _next;
         public QuxMiddleware() { }
+        public QuxMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
         public async Task InvokeAsync(HttpContext context)
         {
             await context.Response.WriteAsync("qux=>");
+            //await _next(context);
         }
     }
 
@@ -20,6 +25,12 @@ namespace MicroNetCore
     {
         public static IApplicationBuilder UseMiddleware(this IApplicationBuilder application, Type type)
         {
+            //RequestDelegate next = context =>
+            //{
+            //    context.Response.StatusCode = 404;
+            //    return Task.CompletedTask;
+            //};
+            //var qux = (QuxMiddleware)Activator.CreateInstance(type, next);
             var qux = (QuxMiddleware)Activator.CreateInstance(type);
             //RequestDelegate next = context =>
             //{

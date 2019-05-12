@@ -53,9 +53,10 @@ namespace MicroNetCore
                 .UseHttpListener()
                 .Configure(app => app
                     .Use(FooMiddleware)
-                    .Use(BarMiddleware)
                     .Use(BazMiddleware)
-                    .UseQux())
+                    .Use(BarMiddleware)
+                    .UseQux()
+                    )
                 .Build()
                 .StartAsync();
         }
@@ -65,6 +66,7 @@ namespace MicroNetCore
             return async context =>
             {
                 await context.Response.WriteAsync("foo=>");
+                //await next(context);
             };
         }
 
@@ -73,6 +75,7 @@ namespace MicroNetCore
             return async context =>
             {
                 await context.Response.WriteAsync("bar=>");
+                //await next(context);
             };
         }
 
@@ -81,6 +84,7 @@ namespace MicroNetCore
             return async context =>
             {
                 await context.Response.WriteAsync("baz=>");
+                //await next(context);
             };
         }
     }
