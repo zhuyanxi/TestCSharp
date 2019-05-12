@@ -17,29 +17,29 @@ namespace MicroNetCore
 
         public RequestDelegate Build()
         {
-            _middlewares.Reverse();
+            //_middlewares.Reverse();
 
-            return httpContext =>
-            {
-                RequestDelegate next = _ => { _.Response.StatusCode = 404; return Task.CompletedTask; };
-
-                foreach (var middleware in _middlewares)
-                {
-                    next = middleware(next);
-                }
-                return next(httpContext);
-            };
-
-            //RequestDelegate next = context =>
+            //return httpContext =>
             //{
-            //    context.Response.StatusCode = 404;
-            //    return Task.CompletedTask;
+            //    RequestDelegate next = _ => { _.Response.StatusCode = 404; return Task.CompletedTask; };
+
+            //    foreach (var middleware in _middlewares)
+            //    {
+            //        next += middleware(next);
+            //    }
+            //    return next(httpContext);
             //};
-            //foreach (var middleware in _middlewares)
-            //{
-            //    next = middleware(next);
-            //}
-            //return next;
+
+            RequestDelegate next = context =>
+            {
+                context.Response.StatusCode = 404;
+                return Task.CompletedTask;
+            };
+            foreach (var middleware in _middlewares)
+            {
+                next += middleware(next);
+            }
+            return next;
         }
 
         public IApplicationBuilder Use(Func<RequestDelegate, RequestDelegate> middleware)

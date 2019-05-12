@@ -25,31 +25,39 @@ namespace MicroNetCore
 
 
             ////IServer server = new HttpListenerServer(new string[] { "http://localhost:5000" });
-            IServer server = new HttpListenerServer();
+
+            //IServer server = new HttpListenerServer();
             //async Task FooBar(HttpContext httpContext)
             //{
             //    await httpContext.Response.WriteAsync("fooBar");
             //}
-            var handler = new ApplicationBuilder()
-                .Use(FooMiddleware)
-                .Use(BarMiddleware)
-                .Use(BazMiddleware)
-                .Build();
-            await server.StartAsync(handler);
+            //var handler = new ApplicationBuilder()
+            //    .Use(FooMiddleware)
+            //    .Use(BarMiddleware)
+            //    .Use(BazMiddleware)
+            //    .Build();
+            //await server.StartAsync(handler);
 
 
-            //NameValueCollection myCol = new NameValueCollection();
-            //myCol.Add("red", "rojo");//如果键值red相同结果合并 rojo,rouge    
-            //myCol.Add("green", "verde");
-            //myCol.Add("blue", "azul");
-            //myCol.Add("red", "rouge");
-            ////myCol["red"] = "dd";
+            //IServer server = new HttpListenerServer();
+            //var handler = new ApplicationBuilder()
+            //    .Use(FooMiddleware)
+            //    .Use(BarMiddleware)
+            //    .Use(BazMiddleware)
+            //    .Build();
+            //IWebHost webHost = new WebHost(server, handler);
+            //await webHost.StartAsync();
 
-            //foreach (string key in myCol.Keys)
-            //{
-            //    Console.WriteLine("{0}:{1}", key, myCol[key]);
-            //}
-            //Console.ReadLine();
+
+            await new WebHostBuilder()
+                .UseHttpListener()
+                .Configure(app => app
+                    .Use(FooMiddleware)
+                    .Use(BarMiddleware)
+                    .Use(BazMiddleware)
+                    .UseQux())
+                .Build()
+                .StartAsync();
         }
 
         static RequestDelegate FooMiddleware(RequestDelegate next)
