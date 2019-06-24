@@ -110,16 +110,16 @@ namespace FunctionalProgram
          */
 
         ///接收其它函数作为参数的函数
-        public IEnumerable<T> MYWhere<T>(this IEnumerable<T> ts, Func<T, bool> predicate)
-        {
-            foreach (T t in ts)
-            {
-                if (predicate(t))
-                {
-                    yield return t;
-                }
-            }
-        }
+        //public IEnumerable<T> MYWhere<T>(this IEnumerable<T> ts, Func<T, bool> predicate)
+        //{
+        //    foreach (T t in ts)
+        //    {
+        //        if (predicate(t))
+        //        {
+        //            yield return t;
+        //        }
+        //    }
+        //}
         #endregion
     }
 }
