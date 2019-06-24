@@ -106,8 +106,20 @@ namespace FunctionalProgram
 
         #region 1.4 高阶函数
         /*
-         * 
+         * 函数作为第一类值的最重要有点：可以定义高阶函数（HOF-High Order Function）
          */
+
+        ///接收其它函数作为参数的函数
+        public IEnumerable<T> MYWhere<T>(this IEnumerable<T> ts, Func<T, bool> predicate)
+        {
+            foreach (T t in ts)
+            {
+                if (predicate(t))
+                {
+                    yield return t;
+                }
+            }
+        }
         #endregion
     }
 }
