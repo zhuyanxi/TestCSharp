@@ -70,7 +70,7 @@ namespace DelegateAndEvent
         {
             Heater h = (Heater)sender;
             Console.WriteLine($"Display: {h.area} - {h.type}");
-            Console.WriteLine($"Display: The water is boiling up very quickly, current temperature: {param} degrees");
+            Console.WriteLine($"Display: The water is boiling up very quickly, current temperature: {e._temperature} degrees");
             Console.WriteLine();
         }
     }
