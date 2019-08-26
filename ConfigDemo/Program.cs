@@ -40,12 +40,16 @@ namespace ConfigDemo
             //var options = new FormatOptions(configuration.GetSection("Format"));
 
             var currentPath = Directory.GetCurrentDirectory();//此方法获取的是dotnet命令运行的根目录,所以调试时会得到~\bin\Debug\netcoreapp2.2
+
+#if DEBUG
+            // 调试用代码
             Console.WriteLine("CurrentPath1:" + currentPath);
             var pathArr = currentPath.Split('\\').ToList();
             int count = pathArr.Count;
             pathArr.RemoveRange(count - 3, 3);
             currentPath = string.Join('\\', pathArr);
             Console.WriteLine("CurrentPath2:" + currentPath);
+#endif
 
             var options = new ConfigurationBuilder()
                 //.Add(new MemoryConfigurationSource { InitialData = source })//当添加了“appsettings.json”配置文件后就应当从配置文件读取数据源
