@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroNetCore", "MicroNetCor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegateAndEvent", "DelegateAndEvent\DelegateAndEvent.csproj", "{BEC32923-A974-4D36-ADC1-BD402E6894ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalProgram", "FunctionalProgram\FunctionalProgram.csproj", "{4DDDD672-5DB2-4C49-BACE-0675C45050DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalProgram", "FunctionalProgram\FunctionalProgram.csproj", "{4DDDD672-5DB2-4C49-BACE-0675C45050DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigDemo", "ConfigDemo\ConfigDemo.csproj", "{710049CD-86F7-44EB-8634-59A2D6B1FC24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4DDDD672-5DB2-4C49-BACE-0675C45050DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DDDD672-5DB2-4C49-BACE-0675C45050DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DDDD672-5DB2-4C49-BACE-0675C45050DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{710049CD-86F7-44EB-8634-59A2D6B1FC24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{710049CD-86F7-44EB-8634-59A2D6B1FC24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{710049CD-86F7-44EB-8634-59A2D6B1FC24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{710049CD-86F7-44EB-8634-59A2D6B1FC24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
