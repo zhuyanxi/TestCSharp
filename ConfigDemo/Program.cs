@@ -83,10 +83,24 @@ namespace ConfigDemo
 #if DEBUG
             // 调试用代码
             Console.WriteLine("CurrentPath1:" + currentPath);
-            var pathArr = currentPath.Split('\\').ToList();
-            int count = pathArr.Count;
-            pathArr.RemoveRange(count - 3, 3);
-            currentPath = string.Join('\\', pathArr);
+            List<string> pathArr = new List<string>();//996622
+
+            var osInfo = Environment.OSVersion;
+            if (osInfo.VersionString.Contains("Windows"))
+            {
+                pathArr = currentPath.Split('\\').ToList();
+                int count = pathArr.Count;
+                pathArr.RemoveRange(count - 3, 3);
+                currentPath = string.Join('\\', pathArr);
+            }
+            else
+            {
+                pathArr = currentPath.Split('/').ToList();
+                int count = pathArr.Count;
+                pathArr.RemoveRange(count - 3, 3);
+                currentPath = string.Join('/', pathArr);
+            }
+
             Console.WriteLine("CurrentPath2:" + currentPath);
 #endif
             return currentPath;
