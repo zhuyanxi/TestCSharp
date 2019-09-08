@@ -12,7 +12,7 @@ namespace ConfigDemo
     {
         private static void Main(string[] args)
         {
-            VersionOne();
+            //VersionOne();
             VersionTwo();
         }
 
@@ -54,13 +54,28 @@ namespace ConfigDemo
                 .SetBasePath(currentPath)
                 .AddJsonFile(path: "appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
+
+            var options = config.GetSection("format").Get<FormatOptions>();
+            var dateTime = options.DateTime;
+            var currencyDecimal = options.CurrencyDecimal;
+            Console.WriteLine("***************** Start Load Config *****************");
+            Console.WriteLine("DateTime:");
+            Console.WriteLine($"\tLongDatePattern: {dateTime.LongDatePattern}");
+            Console.WriteLine($"\tLongTimePattern: {dateTime.LongTimePattern}");
+            Console.WriteLine($"\tShortDatePattern: {dateTime.ShortDatePattern}");
+            Console.WriteLine($"\tShortTimePattern: {dateTime.ShortTimePattern}");
+            Console.WriteLine("CurrencyDecimal:");
+            Console.WriteLine($"\tDigits:{currencyDecimal.Digits}");
+            Console.WriteLine($"\tSymbol:{currencyDecimal.Symbol}");
+            Console.WriteLine("***************** End Load Config *****************");
+
             ChangeToken.OnChange(() => config.GetReloadToken(), () =>
             {
-                var options = config.GetSection("format").Get<FormatOptions>();
-                var dateTime = options.DateTime;
-                var currencyDecimal = options.CurrencyDecimal;
+                var optionsC = config.GetSection("format").Get<FormatOptions>();
+                var dateTimeC = options.DateTime;
+                var currencyDecimalC = options.CurrencyDecimal;
 
-                Console.WriteLine("*****************Start Version Two*****************");
+                Console.WriteLine("***************** Start Config Changed *****************");
                 Console.WriteLine("DateTime:");
                 Console.WriteLine($"\tLongDatePattern: {dateTime.LongDatePattern}");
                 Console.WriteLine($"\tLongTimePattern: {dateTime.LongTimePattern}");
@@ -70,7 +85,7 @@ namespace ConfigDemo
                 Console.WriteLine("CurrencyDecimal:");
                 Console.WriteLine($"\tDigits:{currencyDecimal.Digits}");
                 Console.WriteLine($"\tSymbol:{currencyDecimal.Symbol}\n\n");
-                Console.WriteLine("*****************End Version Two*****************");
+                Console.WriteLine("*****************End Config Changed*****************");
                 Console.WriteLine("");
             });
             Console.ReadKey();
