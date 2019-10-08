@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -49,6 +50,15 @@ namespace CodeInterview
             }
 
             return -1;
+        }
+
+        [Test]
+        public void TestDuplicationArray()
+        {
+            int[] numbers = { 2, 3, 3, 4, 5, 1 };
+            int dup = FindDuplication(numbers, numbers.Length);
+            //Console.WriteLine($"One of the duplicate numbers is : {dup}.");
+            Assert.AreEqual(dup, 3);
         }
     }
 }
