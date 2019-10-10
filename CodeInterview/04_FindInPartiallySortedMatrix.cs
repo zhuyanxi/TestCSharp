@@ -15,8 +15,13 @@ namespace CodeInterview
 
         public static bool Find(int[,] matrix, int number)
         {
-            var rows = matrix.GetLength(0);
-            var columns = matrix.GetLength(1);
+            var mRow = matrix.GetLength(0);
+            var mColumn = matrix.GetLength(1);
+
+            int currentRow = 0;
+            int currentColumn = mColumn - 1;
+
+            //while(currentRow)
 
             return false;
         }
