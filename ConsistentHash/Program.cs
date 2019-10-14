@@ -7,7 +7,8 @@ namespace ConsistentHash
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string? x = "";
+            Console.WriteLine($"Hello World!{x}");
         }
 
         private static void InitializeServer()
