@@ -7,7 +7,7 @@ namespace ConsistentHash
     {
         private static void Main(string[] args)
         {
-            string? x = "";
+            string x = "";
             Console.WriteLine($"Hello World!{x}");
         }
 

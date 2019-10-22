@@ -7,6 +7,9 @@ using System.Text;
 
 namespace ConsistentHash
 {
+    /// <summary>
+    /// https://code.google.com/archive/p/consistent-hash/
+    /// </summary>
     public class MurmurHash2
     {
         private const uint m = 0x5bd1e995;
