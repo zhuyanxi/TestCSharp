@@ -21,25 +21,46 @@ namespace CodeInterview
             var mRow = matrix.GetLength(0);
             var mColumn = matrix.GetLength(1);
 
-            int currentRow = 0;
-            int currentColumn = mColumn - 1;
+            if (matrix != null && mRow > 0 && mColumn > 0)
+            {
+                int currentRow = 0;
+                int currentColumn = mColumn - 1;
+                while (currentRow < mRow && currentColumn >= 0)
+                {
+                    var curNo = matrix[currentRow, currentColumn];
+                    if (number == curNo)
+                    {
+                        return true;
+                    }
 
-            //while(currentRow)
-
+                    if (number < curNo)
+                    {
+                        currentColumn--;
+                    }
+                    else
+                    {
+                        currentRow++;
+                    }
+                }
+            }
             return false;
         }
 
         [Test]
         public void Test1()
         {
-            int[,] matrix = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
+            int[,] matrix = { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
+            //int[,] matrix = new int[0, 0];
             var rows = matrix.GetLength(0);
             var columns = matrix.GetLength(1);
 
-            int a = 1;
-            int b = 2;
-            int sum = a + b;
-            Assert.AreEqual(sum, 3);
+            var tmp = matrix.Length;
+
+            var result1 = Find(matrix, 4);
+            var result2 = Find(matrix, 9);
+
+            Assert.AreEqual(result1, false);
+            Assert.AreEqual(result2, false);
         }
     }
 }
