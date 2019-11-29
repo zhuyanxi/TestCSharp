@@ -11,9 +11,15 @@ namespace TestConsole
             //Test1();
             //Test2();
 
-            PrintThreadStatus("Main Info");
+            //PrintThreadStatus("Main Info");
 
-            //Console.WriteLine("Hello World!");
+            //checked
+            //{
+            //    int n = int.MaxValue;
+            //    n++;
+            //    Console.WriteLine(n);
+            //}
+
             Console.ReadKey();
         }
 
