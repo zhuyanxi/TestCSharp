@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading;
+using System.Diagnostics;
 
 namespace TestConsole
 {
@@ -20,7 +21,56 @@ namespace TestConsole
             //    Console.WriteLine(n);
             //}
 
-            Console.ReadKey();
+            TestCallWSL();
+
+            Console.ReadLine();
+        }
+
+        private static void TestCallWSL()
+        {
+            Console.WriteLine("Enter command to execute on your Ubuntu GNU/Linux");
+            var commandToExecute = Console.ReadLine();
+
+            // if command is null use 'ifconfig' for demo purposes
+            if (string.IsNullOrWhiteSpace(commandToExecute))
+            {
+                commandToExecute = "ipconfig";
+            }
+
+            // Execute wsl command
+            using (var wslCom = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    //FileName = @"C:\Windows\System32\bash.exe",
+                    FileName = @"cmd.exe",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardInput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true
+                }
+            })
+            {
+                wslCom.StandardInput.WriteLine($"{commandToExecute}&exit");
+                wslCom.StandardInput.AutoFlush = true;
+                string output = wslCom.StandardOutput.ReadToEnd();
+
+                wslCom.WaitForExit();
+                wslCom.Close();
+
+                Console.WriteLine(output);
+
+                //wslCom.Start();
+                //Thread.Sleep(500);
+
+                ////wslCom.StandardInput.Flush();
+                ////wslCom.StandardInput.Close();
+
+                //wslCom.WaitForExit(5000);
+
+                //Console.WriteLine(wslCom.StandardOutput.ReadToEnd());
+            }
         }
 
         private static void PrintThreadStatus(string name)
